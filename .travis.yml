@@ -5,11 +5,10 @@ git:
   depth: 1
   
 install:
-- git clone --depth 50 https://github.com/$TRAVIS_REPO_SLUG.git $TRAVIS_REPO_SLUG
-- cd $TRAVIS_REPO_SLUG
-- git checkout -qf $TRAVIS_COMMIT
 - SHA=$(git rev-parse  --short HEAD) 
+- git fetch origin
 - git branch -a
+- git checkout gh-pages
 - sudo add-apt-repository ppa:alex-p/tesseract-ocr -y
 - sudo apt-get update -q
 - sudo apt-get install tesseract-ocr -y
