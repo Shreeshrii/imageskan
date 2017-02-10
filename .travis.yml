@@ -2,14 +2,14 @@ dist: trusty
 sudo: required
 language: java
 git:
-  depth: 3
+  depth: 1
   
 install:
-- git clone --depth 3 https://github.com/$TRAVIS_REPO_SLUG.git $TRAVIS_REPO_SLUG
+- git clone --depth 50 https://github.com/$TRAVIS_REPO_SLUG.git $TRAVIS_REPO_SLUG
 - cd $TRAVIS_REPO_SLUG
 - git checkout -qf $TRAVIS_COMMIT
 - SHA=$(git rev-parse  --short HEAD) 
-
+- git branch -a
 - sudo add-apt-repository ppa:alex-p/tesseract-ocr -y
 - sudo apt-get update -q
 - sudo apt-get install tesseract-ocr -y
@@ -32,7 +32,7 @@ before_script:
 script:
 - ./runtesseract.sh
 - java -cp ocrevaluation.jar  eu.digitisation.Main  -gt ./gt -ocr ./ocr  utf8   -d ./out
-- git checkout gh-pages
+- git checkout -b gh-pages origin/gh-pages
 - mv ./index.html index-${SHA}.html
 - echo "\n https://shreeshrii.github.io/tess4eval/index-${SHA}.html \n" >> ./readme.md
 - git add --all .
