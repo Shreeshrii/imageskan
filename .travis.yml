@@ -1,6 +1,10 @@
 dist: trusty
 sudo: required
 language: java
+before_install:
+- SHA=$(git rev-parse  --short HEAD) 
+- git add --all .
+- git commit -m  "TEST ${SHA} index file" 
 
 install:
 - sudo add-apt-repository ppa:alex-p/tesseract-ocr -y
