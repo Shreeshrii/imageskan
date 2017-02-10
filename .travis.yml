@@ -6,7 +6,8 @@ branches:
   - master
   - gh-pages
   
-before_install:
+install:
+- git fetch --unshallow --tags
 - git branch -a
 - git checkout gh-pages
 - SHA=$(git rev-parse  --short HEAD) 
@@ -17,7 +18,6 @@ before_install:
 - ls *.txt
 - git checkout thisdoesnotexist
 
-install:
 - sudo add-apt-repository ppa:alex-p/tesseract-ocr -y
 - sudo apt-get update -q
 - sudo apt-get install tesseract-ocr -y
