@@ -34,7 +34,7 @@ script:
 - java -cp ocrevaluation.jar  eu.digitisation.Main  -gt ./gt -ocr ./ocr  utf8   -d ./out
 - git checkout -b gh-pages origin/gh-pages
 - mv ./index.html index-${SHA}.html
-- echo "\n https://shreeshrii.github.io/tess4eval/index-${SHA}.html \n" >> ./readme.md
+- echo "https://shreeshrii.github.io/tess4eval/index-${SHA}.html " >> ./readme.md
 - git add --all .
 - git commit -m  "Save ${SHA} index file" 
 - git push  --force https://user:${GH_TOKEN}@github.com/${GITHUB_REPO}.git gh-pages:gh-pages
