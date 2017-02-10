@@ -26,9 +26,10 @@ script:
 - ./runtesseract.sh
 - java -cp ocrevaluation.jar  eu.digitisation.Main  -gt ./gt -ocr ./ocr  utf8   -d ./out
 - git checkout gh-pages
-- mv ./index.html index-old.html
+- SHA=$(git rev-parse  --short HEAD) 
+- mv ./index.html index-${SHA}.html
 - git add --all .
-- git commit -m  "Save old index file" 
+- git commit -m  "Save ${SHA} index file" 
 - git push  --force https://user:${GH_TOKEN}@github.com/${GITHUB_REPO}.git gh-pages:gh-pages
 - git checkout master
 
