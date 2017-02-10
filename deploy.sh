@@ -1,4 +1,7 @@
 #!/bin/bash
+# taken from https://github.com/domenic/zones/blob/master/deploy.sh
+# not used currently
+
 set -e # Exit with nonzero exit code if anything fails
 
 SOURCE_BRANCH="master"
