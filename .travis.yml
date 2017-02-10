@@ -5,16 +5,7 @@ git:
   depth: 1
   
 install:
-- rm -rf
-- git clone https://github.com/Shreeshrii/tess4eval.git Shreeshrii/tess4eval
 - SHA=$(git rev-parse  --short HEAD) 
-
-- git fetch --all
-- git branch -a
-- git checkout -b gh-pages origin/gh-pages
-- git branch -a
-- git checkout xxx
-
 - sudo add-apt-repository ppa:alex-p/tesseract-ocr -y
 - sudo apt-get update -q
 - sudo apt-get install tesseract-ocr -y
@@ -37,20 +28,13 @@ before_script:
 script:
 - ./runtesseract.sh
 - java -cp ocrevaluation.jar  eu.digitisation.Main  -gt ./gt -ocr ./ocr  utf8   -d ./out
-- git checkout -b gh-pages origin/gh-pages
-- mv ./index.html index-${SHA}.html
-- echo "https://shreeshrii.github.io/tess4eval/index-${SHA}.html " >> ./readme.md
-- git add --all .
-- git commit -m  "Save ${SHA} index file" 
-- git push  --force https://user:${GH_TOKEN}@github.com/${GITHUB_REPO}.git gh-pages:gh-pages
-- git checkout master
 
 after_script:
 - cd ./out
 - mv ./gt_out.html ./index.html
 - git init
 - git add --all .
-- git commit -m  "Deploy only out to Github Pages" 
+- git commit -m  "${SHA} - Update Github Pages" 
 - git push  --force https://user:${GH_TOKEN}@github.com/${GITHUB_REPO}.git master:gh-pages
 
 env:
