@@ -1,0 +1,33 @@
+dist: trusty
+sudo: required
+language: java
+install:
+- git submodule add https://github.com/Shreeshrii/imageshin
+- git submodule add https://github.com/Shreeshrii/imagessan
+- sudo add-apt-repository ppa:alex-p/tesseract-ocr -y
+- sudo apt-get update -q
+- sudo apt-get install tesseract-ocr tesseract-ocr-deu -y
+- sudo apt-get install tesseract-ocr-hin  tesseract-ocr-san -y
+- wget -O ./ocrevaluation.jar https://bintray.com/impactocr/maven/download_file?file_path=eu%2Fdigitisation%2FocrevalUAtion%2F1.3.0%2FocrevalUAtion-1.3.0-jar-with-dependencies.jar
+before_script:
+- mkdir ./out
+- mkdir ./ocr
+- tesseract --list-langs
+- tesseract -v
+- chmod +x ./runtesseract.sh
+- ./runtesseract.sh
+script:
+- java -cp ocrevaluation.jar  eu.digitisation.Main  -gt ./gt -ocr ./ocr  utf8   -d ./out
+- cd ./out
+- mv ./gt_out.html ./index.html
+- echo "Creates Github pages to https://shreeshrii.github.io/tess4eval/" > ./readme.md
+- git init
+- git add --all .
+- git commit -m  "Deploy only out to Github Pages" 
+- git push  --force https://user:${GH_TOKEN}@github.com/${GITHUB_REPO}.git master:gh-pages
+env:
+  global:
+  - GITHUB_REPO: "Shreeshrii/tess4eval"
+  - secure: UMd+uiuw5LuknjlTQb1DunanCLLeamnrIrnDerAtBM7o2g3KLAg/89+IF8vydyLoYFnL8F1Q9L36fiYcUmF5A7yPI4AYfhl7ig1X0t+xpwXKpK3G+Abej6b5tGehFidnofi8DSMv0fItNHiIStrMKXGOLr7y1WMDIsaG9/XuerIuZGAw1gsxS4DeUo3R71g9r1qwOFgS7vMdSkxd8Uo/fubZOX0Xo9/WHNyRoQH2INbGavMvnnFz/nvRia5Q0b1PF5BIJ6nwcYWeQ18y0FGeSSQZq/ZNy/t3jjCN1qqPXsdKcBmuTqLDCrsQS4Wd61aqX6X8r6ki27dupm8+eC8NYQ1mxmZgqk97LAZk5GnyOwml7yw8ONzirqVInrkU4gE/IlfeerSBp++wCRSuLTSntQsgY5EFlkUEZFHuay3/+kuHjdVwGkTaebVFWp+TS5Aflx/yicVVM1Tud0bpz8zBproGs2N1GKmpk/jMvw8cOTz9zgsUZrr3wPP5bt0N5FGM1scF63J4jFy7wRZEA5z7tMMfWctyUKGBEKP0t/2kjnRqx4S1jtJjbs6dc5acEHeiGM/oO8L+CL/kHc6PwEg6uH69xn+BESDcu8NJ6vUCCVfmNLd0Ctzm98PDJDM7GeRj7R9DnhG4sZ4CqlXMQcASndsolaxReAJGCOx/EFIpp2M=
+  - secure: ula+BdOwGGPOmbwfWLBIZnnJ6hXO/b4WyLfkUneeXgkW6aHTds0fnQ3onHUjFDdNrf+/EpKDuLl2OcJ7doCI7YekRQQ8p4rApv8F4BxeNwY1wFcoXfgajX9DTzl35B8667EiJgYbKGk5a8KDaSDrMN6izBv3x3HeMv82F9+4LXPU5VZX5leV9p8ISKpQG8IyTcQH7i78Byn6fkiIwoKoP2KAcbtlN5XzmT8nKUxcYEbAwDtfwxe+CcwNnPY63iOCQc5qzEeYZbnkDAoa+LFzQpJmz9W5MVNPf3UB+5sDMK04x4nazHz+0OPETJPa5EsvhkY/KFUv1klRpzNJfUD+VEQTadGHAlbeZHLzhLwTFsIQqj7ZlVCcqhVcYGWfa6UIfsdmDl0LV5/RLXme47lsZAnxfSXc3bEXY2PBfy9PIcXce3TkMEk9i0mWek0MOIdB/xmp/beJBx4RhcrvLAyYDe/1AjmiSCE4SHkpqA382SAnwHncCLOIaKOubkvFDSjKrPAwTLmWBHCW+FKLFQBdDB++tM60Zk49MGIs7OiVs2Ie+N/ZR/F88M1AOuJyuxPlO8XX5RmAbAkr/vaeieD72OrDYETG/F/d+jDW1cLYlpTOjEAP9tOKukqMEVjTP+BKWks6lZ52YgxRRjUmfugvPD8Fdjd6gD2ci+niQ+xnyNQ=
+  - secure: UQKJUTOi6m8Rakd/3p7yS9AoaqTSOtfxDMRQJ9CRVo+0V1aRVb9EX2D75LNDgNM59LWTtIhAiSZVjpgFdeweAqzONzg3sN1gQo7IQJX+7qup35r8V/RI1bh/s2zaXsM+yAyHAilr+MMsqACkZfk/LtoVXLevE+teWovEWI+asGeH30bbfFzXPzjPnTczRTSfowYvBz9qmK8eKPr4wU9OrLRcJp66AWSKrazyckqfufMspKfsfWSACb9YXwFBc17blNp3YvAqzh0UNFMd+6iTfQiZPPxiuoHHrqWV/sZw00Gd8QUZT8Y+EzLC42Wd23LtzIzwxQa//cqSEYzjt+icRa7mzY1I0V7IOvRfD8hmK7yY65maha5GAOqQk6m0CEgl8kygIfqTVD+WQom2OiR42aWwFAD62BaCf139aDauQOPRYdKUHhFwvwcFXCFXyit0uz9vDqe7ulJvZM1BZ1kHGAuPiXkz4GlfSa973xH4HTDmxKIgDkRDJziM6v3d0vBTCFSc/OyXmYECCFgP1YQxHone1NZSIUSbQ+Qg/McpNjvvPnFZle7xdK2EGQ2lKOYRqVWgAGSB4n3CJqqaOLewCOI5uJCoiz1FkKt+BM5sFkjAw76oiH4sqLKXzuvismNgGBs/Tjajv7l/EEupOtPC4avItJ+cJ3vRD/VnagzyWD8=
