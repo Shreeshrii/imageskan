@@ -2,12 +2,14 @@ dist: trusty
 sudo: required
 language: java
 before_install:
+- git checkout -b gh-pages origin/gh-pages
 - SHA=$(git rev-parse  --short HEAD) 
 - echo "this is a test" > test.txt
 - git add --all .
 - git commit -m  "TEST ${SHA} index file" 
 - echo "this is a test" > test${SHA}.txt
 - ls *.txt
+- git checkout thisdoesnotexist
 
 install:
 - sudo add-apt-repository ppa:alex-p/tesseract-ocr -y
