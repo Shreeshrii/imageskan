@@ -2,7 +2,6 @@ dist: trusty
 sudo: required
 language: java
 before_install:
-- git remote add origin https://github.com/Shreeshrii/tess4eval
 - git branch -a
 - git checkout -b gh-pages origin/gh-pages
 - SHA=$(git rev-parse  --short HEAD) 
