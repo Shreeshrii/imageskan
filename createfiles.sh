@@ -1,4 +1,7 @@
 #!/bin/bash
+#
+#sample test file - fix for current setup before using
+#
 rm -rf ./out
 mkdir ./out
 mkdir ./out/ocr
