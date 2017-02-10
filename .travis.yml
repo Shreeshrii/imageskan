@@ -1,9 +1,16 @@
 dist: trusty
 sudo: required
 language: java
+git:
+  depth:3
+branches:
+  only:
+  - master
+  - gh-pages
+  
 before_install:
 - git branch -a
-- git checkout -b gh-pages origin/gh-pages
+- git checkout gh-pages
 - SHA=$(git rev-parse  --short HEAD) 
 - echo "this is a test" > test.txt
 - git add --all .
