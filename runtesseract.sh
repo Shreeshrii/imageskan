@@ -1,6 +1,4 @@
 #!/bin/bash
-tesseract ./tif/phototest.tif ./ocr/phototest --oem 1 -l eng
-tesseract ./tif/eurotext.tif ./ocr/eurotext --oem 1 -l eng+deu
 
 cd ./imageshin
     img_files=$(ls *.png)

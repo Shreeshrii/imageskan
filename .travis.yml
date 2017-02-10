@@ -1,30 +1,53 @@
 dist: trusty
 sudo: required
 language: java
+git:
+  depth: 1
+  
 install:
-- git submodule add https://github.com/Shreeshrii/imageshin
-- git submodule add https://github.com/Shreeshrii/imagessan
+- git clone --depth 50 https://github.com/$TRAVIS_REPO_SLUG.git $TRAVIS_REPO_SLUG
+- cd $TRAVIS_REPO_SLUG
+- git checkout -qf $TRAVIS_COMMIT
+- SHA=$(git rev-parse  --short HEAD) 
+- git branch -a
 - sudo add-apt-repository ppa:alex-p/tesseract-ocr -y
 - sudo apt-get update -q
-- sudo apt-get install tesseract-ocr tesseract-ocr-deu -y
+- sudo apt-get install tesseract-ocr -y
 - sudo apt-get install tesseract-ocr-hin  tesseract-ocr-san -y
 - wget -O ./ocrevaluation.jar https://bintray.com/impactocr/maven/download_file?file_path=eu%2Fdigitisation%2FocrevalUAtion%2F1.3.0%2FocrevalUAtion-1.3.0-jar-with-dependencies.jar
-before_script:
-- mkdir ./out
-- mkdir ./ocr
+
+after_install:
 - tesseract --list-langs
 - tesseract -v
+- tesseract ./tif/phototest.tif stdout --oem 1 -l eng
+
+before_script:
+- git submodule add https://github.com/Shreeshrii/imageshin
+- git submodule add https://github.com/Shreeshrii/imagessan
+- mkdir ./out
+- mkdir ./ocr
+- mkdir ./gt
 - chmod +x ./runtesseract.sh
-- ./runtesseract.sh
+
 script:
+- ./runtesseract.sh
 - java -cp ocrevaluation.jar  eu.digitisation.Main  -gt ./gt -ocr ./ocr  utf8   -d ./out
+- git checkout -b gh-pages origin/gh-pages
+- mv ./index.html index-${SHA}.html
+- echo "\n https://shreeshrii.github.io/tess4eval/index-${SHA}.html \n" >> ./readme.md
+- git add --all .
+- git commit -m  "Save ${SHA} index file" 
+- git push  --force https://user:${GH_TOKEN}@github.com/${GITHUB_REPO}.git gh-pages:gh-pages
+- git checkout master
+
+after_script:
 - cd ./out
 - mv ./gt_out.html ./index.html
-- echo "Creates Github pages to https://shreeshrii.github.io/tess4eval/" > ./readme.md
 - git init
 - git add --all .
 - git commit -m  "Deploy only out to Github Pages" 
 - git push  --force https://user:${GH_TOKEN}@github.com/${GITHUB_REPO}.git master:gh-pages
+
 env:
   global:
   - GITHUB_REPO: "Shreeshrii/tess4eval"
