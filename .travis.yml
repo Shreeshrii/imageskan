@@ -5,13 +5,16 @@ language: java
 install:
 - sudo add-apt-repository ppa:alex-p/tesseract-ocr -y
 - sudo apt-get update -q
-- sudo apt-get install tesseract-ocr tesseract-ocr-deu -y
+- sudo apt-get install tesseract-ocr -y
 - sudo apt-get install tesseract-ocr-hin  tesseract-ocr-san -y
 - wget -O ./ocrevaluation.jar https://bintray.com/impactocr/maven/download_file?file_path=eu%2Fdigitisation%2FocrevalUAtion%2F1.3.0%2FocrevalUAtion-1.3.0-jar-with-dependencies.jar
 
-before_script:
+after_install:
 - tesseract --list-langs
 - tesseract -v
+- tesseract ./tif/phototest.tif stdout --oem 1 -l eng
+
+before_script:
 - git submodule add https://github.com/Shreeshrii/imageshin
 - git submodule add https://github.com/Shreeshrii/imagessan
 - mkdir ./out
@@ -28,6 +31,8 @@ script:
 - git commit -m  "Save old index file" 
 - git push  --force https://user:${GH_TOKEN}@github.com/${GITHUB_REPO}.git gh-pages:gh-pages
 - git checkout master
+
+after_script:
 - cd ./out
 - mv ./gt_out.html ./index.html
 - echo "Creates Github pages to https://shreeshrii.github.io/tess4eval/" > ./readme.md
