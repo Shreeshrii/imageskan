@@ -5,10 +5,15 @@ git:
   depth: 1
   
 install:
+- rm -rf
+- git clone https://github.com/Shreeshrii/tess4eval.git Shreeshrii/tess4eval
 - SHA=$(git rev-parse  --short HEAD) 
 - git fetch origin
 - git branch -a
-- git checkout gh-pages
+- git checkout -b gh-pages origin/gh-pages
+- git branch -a
+- git checkout xxx
+
 - sudo add-apt-repository ppa:alex-p/tesseract-ocr -y
 - sudo apt-get update -q
 - sudo apt-get install tesseract-ocr -y
