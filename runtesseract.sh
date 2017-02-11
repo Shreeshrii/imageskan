@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "Images from Shreeshrii/imageshin"
 cd ./imageshin
     img_files=$(ls *.png)
     for img_file in ${img_files}; do
@@ -9,7 +10,20 @@ cd ./imageshin
         tesseract ${img_file}  ../ocr/${filename} --psm 6 --oem 1 -l hin 
     done   
     
+ cd ../IIIT_Hindi_100
+ echo "Images from http://ocr.iiit.ac.in/Hindi100.html"
+ cd ./Images
+     img_files=$(ls *.jpg)
+    for img_file in ${img_files}; do
+        filename=$(basename "${img_file##*/}" .jpg)
+        echo ${filename}
+        cp ../GT/${filename}.txt ../../gt
+        tesseract  ${img_file}  ../../ocr/${filename} --psm 6 --oem 1 -l san 
+    done   
+       
+    
  cd ../imagessan
+ echo "Images from Shreeshrii/imagessan/groundtruthimages"
  cd ./groundtruthimages
      img_files=$(ls *.png)
     for img_file in ${img_files}; do
@@ -21,6 +35,7 @@ cd ./imageshin
     
  cd ..
  cd ./oldstylefontsamples
+  echo "Images from Shreeshrii/imagessan/oldstylefontsamples"
     img_files=$(ls *.png)
     for img_file in ${img_files}; do
         filename=$(basename "${img_file##*/}" .png)
