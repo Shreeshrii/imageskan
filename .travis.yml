@@ -5,14 +5,13 @@ git:
   depth: 1
 cache:
   directories:
-  - ./imagessan-save
-  - ./imageshin-save
-  - ./IIIT_Hindi_100-save
+  - imagessan-save
+  - imageshin-save
+  - IIIT_Hindi_100-save
   
 install:
-- ls -l ./imagessan-save/*
-- ls -l ./imageshin-save/*
-- ls -l ./IIIT_Hindi_100-save/*
+- bash ./createcache.sh
+
 - git checkout xxx
 - SHA=$(git rev-parse  --short HEAD) 
 - sudo add-apt-repository ppa:alex-p/tesseract-ocr -y
@@ -24,7 +23,7 @@ install:
 - tesseract ./tif/phototest.tif stdout --oem 1 -l eng
 - sudo apt-get install tesseract-ocr-hin  tesseract-ocr-san -y
 - tesseract --list-langs
-- bash ./createcache.sh
+
 
 before_script:
 - mkdir ./out
