@@ -10,6 +10,9 @@ cache:
   - ./IIIT_Hindi_100-save
   
 install:
+  - ls -l ./imagessan-save
+  - ls -l ./imageshin-save
+  - ls -l ./IIIT_Hindi_100-save
 - SHA=$(git rev-parse  --short HEAD) 
 - wget -O ./ocrevaluation.jar https://bintray.com/impactocr/maven/download_file?file_path=eu%2Fdigitisation%2FocrevalUAtion%2F1.3.0%2FocrevalUAtion-1.3.0-jar-with-dependencies.jar
 - sudo add-apt-repository ppa:alex-p/tesseract-ocr -y
