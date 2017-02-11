@@ -10,35 +10,28 @@ cache:
   - IIIT_Hindi_100-save
   
 install:
-- bash ./createcache.sh
-- ls imagessan-save
-- ls imageshin-save
-- ls IIIT_Hindi_100-save
-- ls imageshin-save/imageshin
-- ls IIIT_Hindi_100-save/IIIT_Hindi_100
-- ls imagessan-save/imagessan
-
 - SHA=$(git rev-parse  --short HEAD) 
 - sudo add-apt-repository ppa:alex-p/tesseract-ocr -y
 - sudo apt-get update -q
 - sudo apt-get install tesseract-ocr -y
-- ls /usr/share/tesseract-ocr/
-- ls /usr/share/tesseract-ocr/4.00
+- sudo apt-get install tesseract-ocr-hin  tesseract-ocr-san -y
 - ls /usr/share/tesseract-ocr/4.00/tessdata
 - tesseract -v
-- tesseract ./tif/phototest.tif stdout --oem 1 -l eng
-- sudo apt-get install tesseract-ocr-hin  tesseract-ocr-san -y
 - tesseract --list-langs
-
+- tesseract ./tif/phototest.tif stdout --oem 1 -l eng
 
 before_script:
+- bash ./createcache.sh
+- ls imageshin-save/imageshin
+- ls imagessan-save/imagessan
+- ls IIIT_Hindi_100-save/IIIT_Hindi_100/GT
+- ls IIIT_Hindi_100-save/IIIT_Hindi_100/Images
 - mkdir ./out
 - mkdir ./ocr
 - mkdir ./gt
-- chmod +x ./runtesseract.sh
 
 script:
-- ./runtesseract.sh
+- bash ./runtesseract.sh
 - java -cp ocrevaluation.jar  eu.digitisation.Main  -gt ./gt -ocr ./ocr  utf8   -d ./out
 
 after_script:
