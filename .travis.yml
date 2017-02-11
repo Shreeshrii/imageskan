@@ -15,10 +15,12 @@ install:
 - ls -l ./IIIT_Hindi_100-save
 - git checkout xxx
 - SHA=$(git rev-parse  --short HEAD) 
-- wget -O ./ocrevaluation.jar https://bintray.com/impactocr/maven/download_file?file_path=eu%2Fdigitisation%2FocrevalUAtion%2F1.3.0%2FocrevalUAtion-1.3.0-jar-with-dependencies.jar
+# - wget -O ./ocrevaluation.jar https://bintray.com/impactocr/maven/download_file?file_path=eu%2Fdigitisation%2FocrevalUAtion%2F1.3.0%2FocrevalUAtion-1.3.0-jar-with-dependencies.jar
 - sudo add-apt-repository ppa:alex-p/tesseract-ocr -y
 - sudo apt-get update -q
 - sudo apt-get install tesseract-ocr -y
+- ls /usr/share/tesseract-ocr/
+- ls /usr/share/tessdata/
 - tesseract -v
 - tesseract ./tif/phototest.tif stdout --oem 1 -l eng
 - sudo apt-get install tesseract-ocr-hin  tesseract-ocr-san -y
