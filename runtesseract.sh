@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Images from Shreeshrii/imageshin"
-cd ./imageshin
+cd ./imageshin-save
     img_files=$(ls *.png)
     for img_file in ${img_files}; do
         filename=$(basename "${img_file##*/}" .png)
@@ -10,7 +10,7 @@ cd ./imageshin
         tesseract ${img_file}  ../ocr/${filename} --psm 6 --oem 1 -l hin 
     done   
     
- cd ../IIIT_Hindi_100
+ cd ../IIIT_Hindi_100-save
  echo "Images from http://ocr.iiit.ac.in/Hindi100.html"
  cd ./Images
      img_files=$(ls *.jpg)
@@ -22,7 +22,7 @@ cd ./imageshin
     done   
        
     
- cd ../imagessan
+ cd ../imagessan-save
  echo "Images from Shreeshrii/imagessan/groundtruthimages"
  cd ./groundtruthimages
      img_files=$(ls *.png)
