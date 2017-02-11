@@ -19,9 +19,9 @@ install:
 - tesseract ./tif/phototest.tif stdout --oem 1 -l eng
 - sudo apt-get install tesseract-ocr-hin  tesseract-ocr-san -y
 - tesseract --list-langs
+- bash ./createcache.sh
 
 before_script:
-- createcache.sh
 - mkdir ./out
 - mkdir ./ocr
 - mkdir ./gt
