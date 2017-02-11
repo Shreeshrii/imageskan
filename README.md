@@ -1,4 +1,4 @@
-# tess4eval
+# tess4eval_kannada
 
 Uses
 
