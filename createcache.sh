@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#   git submodule add https://github.com/Shreeshrii/imagessan
-#   mv /home/travis/build/Shreeshrii/tess4eval/imagessan imagessan-save
+   git submodule add https://github.com/Shreeshrii/imagessan
+   mv /home/travis/build/Shreeshrii/tess4eval/imagessan imagessan-save
 #   ls imagessan-save
 #   ls imagessan-save/imagessan
    
