@@ -2,7 +2,7 @@
 
 echo "using saved cache"
 echo "Images from Shreeshrii/imageshin"
-cd ./imageshin-save
+cd ./imageshin-save/imageshin
     img_files=$(ls *.png)
     for img_file in ${img_files}; do
         filename=$(basename "${img_file##*/}" .png)
@@ -11,7 +11,7 @@ cd ./imageshin-save
         tesseract ${img_file}  ../ocr/${filename} --psm 6 --oem 1 -l hin 
     done   
     
- cd ../IIIT_Hindi_100-save
+ cd ../IIIT_Hindi_100-save/IIIT_Hindi_100
  echo "Images from http://ocr.iiit.ac.in/Hindi100.html"
  cd ./Images
      img_files=$(ls *.jpg)
@@ -23,7 +23,7 @@ cd ./imageshin-save
     done   
        
     
- cd ../imagessan-save
+ cd ../imagessan-save/imagessan
  echo "Images from Shreeshrii/imagessan/groundtruthimages"
  cd ./groundtruthimages
      img_files=$(ls *.png)
