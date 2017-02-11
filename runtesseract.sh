@@ -19,7 +19,7 @@ cd ${TRAVIS_BUILD_DIR}/imageshin-save/imageshin
     for img_file in ${img_files}; do
         filename=$(basename "${img_file##*/}" .jpg)
         echo ${img_file}
-        cp ../GT/${filename}.txt${TRAVIS_BUILD_DIR}/gt
+        cp ../GT/${filename}.txt ${TRAVIS_BUILD_DIR}/gt
         tesseract  ${img_file}  ${TRAVIS_BUILD_DIR}/ocr/${filename} --psm 6 --oem 1 -l san 
     done   
        
