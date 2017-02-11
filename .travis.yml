@@ -13,9 +13,9 @@ install:
 - ls imagessan-save
 - ls imageshin-save
 - ls IIIT_Hindi_100-save
-- ls imagessan-save/*
-- ls imageshin-save/*
-- IIIT_Hindi_100-save/*
+- ls imageshin-save/imageshin
+- ls IIIT_Hindi_100-save/IIIT_Hindi_100
+- ls imagessan-save/imagessan
 
 - git checkout xxx
 
