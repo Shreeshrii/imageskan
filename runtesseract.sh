@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "using saved cache"
 echo "Images from Shreeshrii/imageshin"
 cd ./imageshin-save
     img_files=$(ls *.png)
