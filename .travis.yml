@@ -6,10 +6,6 @@ git:
   
 install:
 - SHA=$(git rev-parse  --short HEAD) 
-- wget -O ./IIIT_Hindi_100.zip  http://ocr.iiit.ac.in/IIIT_Hindi_100.zip
-- unzip ./IIIT_Hindi_100.zip
-- ls -l
-- git checkout xxx
 - sudo add-apt-repository ppa:alex-p/tesseract-ocr -y
 - sudo apt-get update -q
 - sudo apt-get install tesseract-ocr -y
