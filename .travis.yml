@@ -10,9 +10,18 @@ cache:
   - IIIT_Hindi_100-save
   
 install:
-- bash ./createcache.sh
+- ls imagessan-save
+- ls imageshin-save
+- ls IIIT_Hindi_100-save
+- ls imagessan-save/*
+- ls imageshin-save/*
+- IIIT_Hindi_100-save/*
 
 - git checkout xxx
+
+- bash ./createcache.sh
+
+
 - SHA=$(git rev-parse  --short HEAD) 
 - sudo add-apt-repository ppa:alex-p/tesseract-ocr -y
 - sudo apt-get update -q
