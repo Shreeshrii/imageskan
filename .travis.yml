@@ -3,6 +3,11 @@ sudo: required
 language: java
 git:
   depth: 1
+cache:
+  directories:
+  - ./imagessan
+  - ./imageshin
+  - ./IIIT_Hindi_100
   
 install:
 - SHA=$(git rev-parse  --short HEAD) 
@@ -11,9 +16,9 @@ install:
 - sudo apt-get update -q
 - sudo apt-get install tesseract-ocr -y
 - tesseract -v
+- tesseract ./tif/phototest.tif stdout --oem 1 -l eng
 - sudo apt-get install tesseract-ocr-hin  tesseract-ocr-san -y
 - tesseract --list-langs
-- tesseract ./tif/phototest.tif stdout --oem 1 -l eng
 
 before_script:
 - git submodule add https://github.com/Shreeshrii/imageshin
