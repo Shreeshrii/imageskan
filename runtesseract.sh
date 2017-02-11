@@ -2,54 +2,53 @@
 
 echo "using saved cache"
 echo "Images from Shreeshrii/imageshin"
-cd ./imageshin-save/imageshin
+
+cd ${TRAVIS_BUILD_DIR}/imageshin-save/imageshin
     img_files=$(ls *.png)
     for img_file in ${img_files}; do
         filename=$(basename "${img_file##*/}" .png)
-        echo ${filename}
-        cp ${filename}.txt ../gt
-        tesseract ${img_file}  ../ocr/${filename} --psm 6 --oem 1 -l hin 
+        echo ${img_file}
+        cp ${filename}.txt ${TRAVIS_BUILD_DIR}/gt
+        tesseract ${img_file} ${TRAVIS_BUILD_DIR}/ocr/${filename} --psm 6 --oem 1 -l hin 
     done   
     
- cd ../IIIT_Hindi_100-save/IIIT_Hindi_100
+ cd ${TRAVIS_BUILD_DIR}/IIIT_Hindi_100-save/IIIT_Hindi_100
  echo "Images from http://ocr.iiit.ac.in/Hindi100.html"
- cd ./Images
+ cd Images
      img_files=$(ls *.jpg)
     for img_file in ${img_files}; do
         filename=$(basename "${img_file##*/}" .jpg)
-        echo ${filename}
-        cp ../GT/${filename}.txt ../../gt
-        tesseract  ${img_file}  ../../ocr/${filename} --psm 6 --oem 1 -l san 
+        echo ${img_file}
+        cp ../GT/${filename}.txt${TRAVIS_BUILD_DIR}/gt
+        tesseract  ${img_file}  ${TRAVIS_BUILD_DIR}/ocr/${filename} --psm 6 --oem 1 -l san 
     done   
        
-    
- cd ../imagessan-save/imagessan
+ cd ${TRAVIS_BUILD_DIR}/imagessan-save/imagessan
  echo "Images from Shreeshrii/imagessan/groundtruthimages"
- cd ./groundtruthimages
+ cd groundtruthimages
      img_files=$(ls *.png)
     for img_file in ${img_files}; do
         filename=$(basename "${img_file##*/}" .png)
-        echo ${filename}
-        cp ${filename}.txt ../../gt
-        tesseract  ${img_file}  ../../ocr/${filename} --psm 6 --oem 1 -l san 
+        echo ${img_file}
+        cp ${filename}.txt ${TRAVIS_BUILD_DIR}/gt
+        tesseract  ${img_file}  ${TRAVIS_BUILD_DIR}/ocr/${filename} --psm 6 --oem 1 -l san 
     done   
     
- cd ..
- cd ./oldstylefontsamples
+ cd ../oldstylefontsamples
   echo "Images from Shreeshrii/imagessan/oldstylefontsamples"
     img_files=$(ls *.png)
     for img_file in ${img_files}; do
         filename=$(basename "${img_file##*/}" .png)
-        echo ${filename}
-        cp ${filename}.txt ../../gt
-        tesseract  ${img_file}  ../../ocr/${filename} --psm 6 --oem 1 -l san 
+        echo ${img_file}
+        cp ${filename}.txt ${TRAVIS_BUILD_DIR}/gt
+        tesseract  ${img_file}  ${TRAVIS_BUILD_DIR}/ocr/${filename} --psm 6 --oem 1 -l san 
     done       
     
     img_files=$(ls *.tif)
     for img_file in ${img_files}; do
         filename=$(basename "${img_file##*/}" .tif)
-        echo ${filename}
-        cp ${filename}.txt ../../gt
-        tesseract  ${img_file}  ../../ocr/${filename} --psm 6 --oem 1 -l san 
+        echo ${img_file}
+        cp ${filename}.txt ${TRAVIS_BUILD_DIR}/gt
+        tesseract  ${img_file} ${TRAVIS_BUILD_DIR}/ocr/${filename} --psm 6 --oem 1 -l san 
     done 
     
