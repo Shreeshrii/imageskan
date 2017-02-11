@@ -23,7 +23,8 @@ install:
 - sudo apt-get update -q
 - sudo apt-get install tesseract-ocr -y
 - ls /usr/share/tesseract-ocr/
-- ls /usr/share/tessdata/
+- ls /usr/share/tesseract-ocr/4.00
+- ls /usr/share/tesseract-ocr/4.00/tessdata
 - tesseract -v
 - tesseract ./tif/phototest.tif stdout --oem 1 -l eng
 - sudo apt-get install tesseract-ocr-hin  tesseract-ocr-san -y
