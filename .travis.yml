@@ -19,7 +19,6 @@ before_script:
 - bash ./createcache.sh
 - mkdir ./out
 - mkdir ./ocr
-- mkdir ./gt
 script:
 - bash ./runtesseract.sh
 - java -cp ./jar/ocrevaluation.jar  eu.digitisation.Main  -gt ./gt -ocr ./ocr  utf8   -d
