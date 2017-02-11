@@ -13,6 +13,7 @@ install:
 - sudo apt-get install tesseract-ocr -y
 - sudo apt-get install tesseract-ocr-kan -y
 - ls /usr/share/tesseract-ocr/4.00/tessdata
+- which tesseract
 - tesseract -v
 - tesseract --list-langs
 before_script:
