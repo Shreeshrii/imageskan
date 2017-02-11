@@ -1,7 +1,9 @@
 #!/bin/bash
 
-   git submodule add https://github.com/Shreeshrii/imagessan
-   mv /home/travis/build/Shreeshrii/tess4eval/imagessan imagessan-save
+echo "cache already built, if running these commands, clear cache dirs first"
+
+#   git submodule add https://github.com/Shreeshrii/imagessan
+#   mv /home/travis/build/Shreeshrii/tess4eval/imagessan imagessan-save
 #   ls imagessan-save
 #   ls imagessan-save/imagessan
    
