@@ -8,20 +8,10 @@ cache:
   - jar
 install:
 - SHA=$(git rev-parse  --short HEAD)
-- sudo add-apt-repository ppa:alex-p/tesseract-ocr -y
-- sudo apt-get update -q
-- sudo apt-get install tesseract-ocr -y
-- sudo apt-get install tesseract-ocr-kan -y
-- ls /usr/share/tesseract-ocr/4.00/tessdata
-- which tesseract
-- tesseract -v
-- tesseract --list-langs
 before_script:
 - bash ./createcache.sh
 - mkdir ./out
-- mkdir ./ocr
 script:
-- bash ./runtesseract.sh
 - java -cp ./jar/ocrevaluation.jar  eu.digitisation.Main  -gt ./gt -ocr ./ocr  utf8   -d
   ./out
 after_script:
