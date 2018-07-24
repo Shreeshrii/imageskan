@@ -1,10 +1,5 @@
 #!/bin/bash
 #
-sudo apt update
-sudo apt install ttf-mscorefonts-installer
-sudo apt install fonts-dejavu
-fc-cache -vf
-#
 # add lines from https://github.com/tesseract-ocr/tesseract/wiki/TrainingTesseract-4.00#fine-tuning-for--a-few-characters
 # to training text for plusminus training
 cd tesseract-ocr/tesseract
@@ -38,7 +33,30 @@ time bash ./src/training/tesstrain.sh \
   --langdata_dir ../langdata \
   --tessdata_dir ./tessdata  \
   --training_text ../langdata/eng/eng.plusminusnew.training_text \
-  --output_dir ../tesstutorial/trainplusminus
+  --output_dir ../tesstutorial/trainplusminus \
+  --fontlist " \
+  'DejaVu Sans' \
+  'DejaVu Sans Bold' \
+  'DejaVu Sans Bold Oblique' \
+  'DejaVu Sans Bold Oblique Semi-Condensed' \
+  'DejaVu Sans Bold Semi-Condensed' \
+  'DejaVu Sans Mono' \
+  'DejaVu Sans Mono Bold' \
+  'DejaVu Sans Mono Bold Oblique' \
+  'DejaVu Sans Mono Oblique' \
+  'DejaVu Sans Oblique' \
+  'DejaVu Sans Oblique Semi-Condensed' \
+  'DejaVu Sans Semi-Condensed' \
+  'DejaVu Sans Ultra-Light' \
+  'DejaVu Serif' \
+  'DejaVu Serif Bold' \
+  'DejaVu Serif Bold Italic' \
+  'DejaVu Serif Bold Italic Semi-Condensed' \
+  'DejaVu Serif Bold Semi-Condensed' \
+  'DejaVu Serif Italic' \
+  'DejaVu Serif Italic Semi-Condensed' \
+  'DejaVu Serif Semi-Condensed' \
+  "
 #----------------------------
 rm -rf  ../tesstutorial/evalplusminus 
 time bash ./src/training/tesstrain.sh \
