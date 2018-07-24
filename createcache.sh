@@ -1,4 +1,4 @@
-mkdir tesseract-ocr
+mkdir -p tesseract-ocr
 cd tesseract-ocr
 git clone --depth 1 https://github.com/tesseract-ocr/tesseract.git
 git clone --depth 1 https://github.com/tesseract-ocr/langdata.git
