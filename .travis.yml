@@ -17,7 +17,7 @@ install:
 - tesseract --list-langs
 - ls $TRAVIS_BUILD_DIR
 - echo "BUILD ID" $TRAVIS_BUILD_NUMBER " " $TRAVIS_BUILD_ID
-- if test ! -d tesseract-ocr; bash ./createcache.sh; fi
+- if test ! -d tesseract-ocr; then bash ./createcache.sh; fi
 before_script:
 - mkdir ./out
 script:
