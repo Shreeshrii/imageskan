@@ -1,5 +1,6 @@
 dist: trusty
 sudo: required
+language: cpp
 git:
   depth: 10
 install:
@@ -14,7 +15,7 @@ install:
 before_script:
 - mkdir ./out
 script:
-- ls -l  ./out
+- bash ./runtutorial.sh
 after_script:
 - cd ./out
 - mv ./gt_out.html ./index.html
