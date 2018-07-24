@@ -3,6 +3,9 @@ sudo: required
 language: cpp
 git:
   depth: 10
+cache:
+  directories:
+  - tesseract-ocr
 install:
 - SHA=$(git rev-parse  --short HEAD)
 - sudo add-apt-repository ppa:alex-p/tesseract-ocr -y
@@ -12,6 +15,7 @@ install:
 - which tesseract
 - tesseract -v
 - tesseract --list-langs
+- if test ! -d tesseract-ocr ; then bash ./createcache.sh
 before_script:
 - mkdir ./out
 script:
