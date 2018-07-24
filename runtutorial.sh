@@ -1,4 +1,10 @@
 #!/bin/bash
+#
+sudo apt update
+sudo apt install ttf-mscorefonts-installer
+sudo apt install fonts-dejavu
+fc-cache -vf
+#
 # add lines from https://github.com/tesseract-ocr/tesseract/wiki/TrainingTesseract-4.00#fine-tuning-for--a-few-characters
 # to training text for plusminus training
 cd tesseract-ocr/tesseract
