@@ -15,7 +15,7 @@ install:
 - which tesseract
 - tesseract -v
 - tesseract --list-langs
-- if test ! -d tesseract-ocr ; then bash ./createcache.sh
+- if test ! -d tesseract-ocr ; then bash ./createcache.sh; fi
 before_script:
 - mkdir ./out
 script:
