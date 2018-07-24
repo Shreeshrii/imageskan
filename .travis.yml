@@ -1,7 +1,7 @@
 dist: trusty
 sudo: required
 git:
-  depth: 1
+  depth: 10
 install:
 - SHA=$(git rev-parse  --short HEAD)
 -- sudo add-apt-repository ppa:alex-p/tesseract-ocr -y
