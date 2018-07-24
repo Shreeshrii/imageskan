@@ -1,3 +1,10 @@
+#!/bin/bash
+#
+sudo apt update
+sudo apt install ttf-mscorefonts-installer
+sudo apt install fonts-dejavu
+fc-cache -vf
+
 mkdir -p tesseract-ocr
 cd tesseract-ocr
 git clone --depth 1 https://github.com/tesseract-ocr/tesseract.git
