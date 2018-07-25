@@ -33,10 +33,10 @@ nice text2image --find_fonts \
  | sed -e "s/^/  '/" \
  | sed -e "s/@/'/g" > ../langdata/eng/eng.fontslist.txt
 #
-cat  ../langdata/eng/eng.fontslist.txt
+fonts_for_training=` cat ../langdata/eng/eng.fontslist.txt `
 #---------------------------------------------------
 rm -rf  ../tesstutorial/trainplusminus 
-time bash ./src/training/tesstrain.sh \
+time eval bash ./src/training/tesstrain.sh \
   --fonts_dir /usr/share/fonts \
   --lang eng \
   --linedata_only \
@@ -45,7 +45,7 @@ time bash ./src/training/tesstrain.sh \
   --tessdata_dir ./tessdata  \
   --training_text ../langdata/eng/eng.plusminusnew.training_text \
   --output_dir ../tesstutorial/trainplusminus \
-  --fontlist ` cat  ../langdata/eng/eng.fontslist.txt `
+  --fontlist $fonts_for_training
 #----------------------------
 rm -rf  ../tesstutorial/evalplusminus 
 time bash ./src/training/tesstrain.sh \
