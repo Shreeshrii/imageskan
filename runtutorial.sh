@@ -21,8 +21,19 @@ Avoidance Moosejaw pm* ±18 note: PROBE Jailbroken RAISE Fountains Write Goods (
 Oberﬂachen source.” CULTURED CUTTING Home 06-13-2008, § ±44.01189673355 €
 netting Bookmark of WE MORE) STRENGTH IDENTICAL ±2? activity PROPERTY MAINTAINED
 EOM
-
-shuf -o ../langdata/eng/eng.plusminusnew.training_text <../langdata/eng/eng.plusminusnew.training_text 
+#---------------------------------------------------
+nice text2image --find_fonts \
+--fonts_dir /usr/share/fonts \
+--text ../langdata/eng/eng.plusminusnew.training_text \
+--min_coverage 1.0 \
+--render_per_font=false \
+--outputbase ../langdata/eng/eng \
+|& grep raw \
+ | sed -e 's/ :.*/@ \\/g' \
+ | sed -e "s/^/  '/" \
+ | sed -e "s/@/'/g" > ../langdata/eng/eng.fontslist.txt
+#
+cat  ../langdata/eng/eng.fontslist.txt
 #---------------------------------------------------
 rm -rf  ../tesstutorial/trainplusminus 
 time bash ./src/training/tesstrain.sh \
@@ -34,29 +45,7 @@ time bash ./src/training/tesstrain.sh \
   --tessdata_dir ./tessdata  \
   --training_text ../langdata/eng/eng.plusminusnew.training_text \
   --output_dir ../tesstutorial/trainplusminus \
-  --fontlist " \
-  'DejaVu Sans' \
-  'DejaVu Sans Bold' \
-  'DejaVu Sans Bold Oblique' \
-  'DejaVu Sans Bold Oblique Semi-Condensed' \
-  'DejaVu Sans Bold Semi-Condensed' \
-  'DejaVu Sans Mono' \
-  'DejaVu Sans Mono Bold' \
-  'DejaVu Sans Mono Bold Oblique' \
-  'DejaVu Sans Mono Oblique' \
-  'DejaVu Sans Oblique' \
-  'DejaVu Sans Oblique Semi-Condensed' \
-  'DejaVu Sans Semi-Condensed' \
-  'DejaVu Sans Ultra-Light' \
-  'DejaVu Serif' \
-  'DejaVu Serif Bold' \
-  'DejaVu Serif Bold Italic' \
-  'DejaVu Serif Bold Italic Semi-Condensed' \
-  'DejaVu Serif Bold Semi-Condensed' \
-  'DejaVu Serif Italic' \
-  'DejaVu Serif Italic Semi-Condensed' \
-  'DejaVu Serif Semi-Condensed' \
-  "
+  --fontlist ` cat  ../langdata/eng/eng.fontslist.txt `
 #----------------------------
 rm -rf  ../tesstutorial/evalplusminus 
 time bash ./src/training/tesstrain.sh \
