@@ -63,7 +63,7 @@ combine_tessdata -e ./tessdata/eng.traineddata \
   ../tesstutorial/trainplusminus/eng.lstm
 #----------------------------
 time lstmtraining \
-  --debug_interval -1 \
+  --debug_interval 0 \
   --model_output ../tesstutorial/trainplusminus/plusminus \
   --continue_from ../tesstutorial/trainplusminus/eng.lstm \
   --traineddata ../tesstutorial/trainplusminus/eng/eng.traineddata \
@@ -72,7 +72,7 @@ time lstmtraining \
   --max_iterations 100
 #----------------------------
 time lstmtraining \
-  --debug_interval -1 \
+  --debug_interval 0 \
   --model_output ../tesstutorial/trainplusminus/plusminus \
   --continue_from ../tesstutorial/trainplusminus/eng.lstm \
   --traineddata ../tesstutorial/trainplusminus/eng/eng.traineddata \
